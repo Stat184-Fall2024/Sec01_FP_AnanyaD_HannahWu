@@ -8,6 +8,7 @@
 Purpose: Compare the 2 datasets to compare wholesale prices of cotton & cotton seed in USA between 09/1910-06/1938. Find the profit/ investment required between the propogation of cottonseed to mature cotton.
 
 Steps to take:
+
 0. Load necessary packages and Datasets.
 1. Filter the Data2 to pnly include the data between 1910-1938.
 2. Add headers/ tidy the datasets.
