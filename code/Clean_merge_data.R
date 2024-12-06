@@ -3,7 +3,7 @@ library(dplyr)
 library(readr)
 
 # Set working directory to your desired path
-setwd("C:\\Users\\ekans\\Desktop\\STAT 184\\Group Project")  # Change this to your specific path
+setwd("C:\\Users\\ekans\\Desktop\\STAT 184\\Group Project")
 
 # Load the datasets from the URLs
 url1 <- "https://data.nber.org/databases/macrohistory/rectdata/04/m04006aa.dat"
