@@ -14,11 +14,11 @@ data$Cotton_Wholesale_Price <- as.numeric(data$Cotton_Wholesale_Price)
 cleaned_data <- data %>%
   filter(!is.na(Cottonseed_Price) & !is.na(Cotton_Wholesale_Price))
 
-# Calculate moving averages (7-point average)
+# Calculate moving averages (5 pt average)
 cleaned_data <- cleaned_data %>%
   mutate(
-    MA_Cottonseed = zoo::rollmean(Cottonseed_Price, 7, fill = NA, align = "right"),
-    MA_Cotton_Wholesale = zoo::rollmean(Cotton_Wholesale_Price, 7, fill = NA, align = "right")
+    MA_Cottonseed = zoo::rollmean(Cottonseed_Price, 5, fill = NA, align = "right"),
+    MA_Cotton_Wholesale = zoo::rollmean(Cotton_Wholesale_Price, 5, fill = NA, align = "right")
   )
 
 # Plot moving averages

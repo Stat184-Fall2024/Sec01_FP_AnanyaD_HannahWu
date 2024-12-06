@@ -14,7 +14,7 @@ data$Cotton_Wholesale_Price <- as.numeric(data$Cotton_Wholesale_Price)
 cleaned_data <- data %>%
   filter(!is.na(Cottonseed_Price) & !is.na(Cotton_Wholesale_Price))
 
-# Create Side-by-Side Histograms
+#Side-by-Side Histograms
 ggplot(cleaned_data) +
   geom_histogram(aes(x = Cottonseed_Price, fill = "Cottonseed"), 
                  bins = 20, alpha = 0.6, position = "identity") +

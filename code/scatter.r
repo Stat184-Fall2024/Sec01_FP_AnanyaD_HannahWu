@@ -1,4 +1,3 @@
-# Load necessary libraries
 library(ggplot2)
 
 # Load dataset
@@ -13,7 +12,7 @@ data$Cotton_Wholesale_Price <- as.numeric(data$Cotton_Wholesale_Price)
 cleaned_data <- data %>%
   filter(!is.na(Cottonseed_Price) & !is.na(Cotton_Wholesale_Price))
 
-# Create scatter plot with trend line
+# scatter plot with trend line
 ggplot(cleaned_data, aes(x = Cottonseed_Price, y = Cotton_Wholesale_Price)) +
   geom_point(color = "blue", alpha = 0.6) +
   geom_smooth(method = "lm", color = "red", se = FALSE) +

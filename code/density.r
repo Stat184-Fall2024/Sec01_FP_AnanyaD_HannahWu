@@ -1,4 +1,3 @@
-# Load necessary libraries
 library(ggplot2)
 library(dplyr)
 
@@ -14,7 +13,7 @@ data$Cotton_Wholesale_Price <- as.numeric(data$Cotton_Wholesale_Price)
 cleaned_data <- data %>%
   filter(!is.na(Cottonseed_Price) & !is.na(Cotton_Wholesale_Price))
 
-# Create Density Plot
+# Density Plot
 ggplot() +
   geom_density(data = cleaned_data, aes(x = Cottonseed_Price, fill = "Cottonseed"), alpha = 0.5) +
   geom_density(data = cleaned_data, aes(x = Cotton_Wholesale_Price, fill = "Cotton Wholesale"), alpha = 0.5) +
