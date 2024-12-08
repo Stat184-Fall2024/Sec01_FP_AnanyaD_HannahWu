@@ -25,9 +25,9 @@ library(ggplot2)
 library(readr)
 
 # Load the datasets
-cotton_prices <- read_csv("Cotton_Wholesale_Prices_1910_1938.csv")
-cottonseed_prices <- read_csv("Cottonseed_Prices_1910_1938.csv")
-merged_data <- read_csv("Merged_Cotton_Cottonseed_Prices.csv")
+cotton_prices <- read_csv("data\Cotton_Wholesale_Prices_1910_1938.csv")
+cottonseed_prices <- read_csv("data\Cottonseed_Prices_1910_1938.csv")
+merged_data <- read_csv("data\Merged_Cotton_Cottonseed_Prices.csv")
 ```
 
 ## Data Summary
