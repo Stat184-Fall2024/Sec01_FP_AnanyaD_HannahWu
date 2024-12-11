@@ -1,0 +1,115 @@
+---
+title: "Cotton & CottonSeed Prices"
+format: pdf
+editor: visual
+---
+
+# Analysis of Cotton and Cottonseed Prices (1910-1938)
+
+## Introduction
+
+The economic significance of cotton and cottonseed during the early 20th century was profound, impacting global trade, agriculture, and industrial processes. This analysis focuses on examining trends and relationships in cotton and cottonseed prices between 1910 and 1938, a period marked by economic upheaval and agricultural innovation.
+
+The dataset `Merged_Cotton_Cottonseed_Prices.csv` was created by cleaning and filtering two primary data sources: `Cotton_Wholesale_Prices_1910_1938.csv` and `Cottonseed_Prices_1910_1938.csv`. The goal of this project is to uncover insights into price trends, identify key patterns, and provide a foundation for understanding the economic dynamics of this period.
+
+------------------------------------------------------------------------
+
+## Literature Review
+
+Studies on historical commodity pricing often underscore the importance of agricultural goods in shaping economic policies and societal outcomes. Cotton, often referred to as "white gold," played a pivotal role in the economies of the United States and other countries during the early 20th century. Similarly, cottonseed, a byproduct of cotton production, was increasingly valued for its use in oil production and livestock feed.
+
+Previous research has highlighted: - The influence of economic events such as the Great Depression on commodity prices. - The relationship between agricultural yields and market fluctuations. - The evolution of byproduct markets, such as cottonseed oil, which gained prominence during this era.
+
+------------------------------------------------------------------------
+
+## Methodology
+
+### Data Sources
+
+The dataset was constructed by integrating and cleaning the following:
+
+1.  **Cotton Wholesale Prices (1910–1938)**: Provided annual wholesale price data for raw cotton.
+
+2.  **Cottonseed Prices (1870–1945)**: Contained corresponding annual prices for cottonseed.
+
+### Cleaning and Filtering Process
+
+The original data sets were pre-processed to: - Remove missing or incomplete records. - Align the time frames and ensure consistency in units of measurement. - Retain only relevant columns (e.g., year, price, region).
+
+### Analytical Tools
+
+-   **Data visualization**: Boxplots, histograms, and line graphs were used to identify trends and outliers.
+
+-   **Summary statistics**: Measures of central tendency and dispersion were calculated for both cotton and cottonseed prices.
+
+-   **Correlation analysis**: Examined the relationship between cotton and cottonseed prices over time.
+
+------------------------------------------------------------------------
+
+## Data Exploration
+
+### Visualizing Price Trends
+
+The merged dataset revealed distinct price trends for cotton and cottonseed.
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(kableExtra)
+
+# Load and visualize the dataset
+merged_data <- read.csv("C:\\Users\\PRIYNKA\\Documents\\GitHub\\Sec01_FP_AnanyaD_HannahWu\\data\\Merged_Cotton_Cottonseed_Prices.csv")
+```
+
+```{r}
+## Data Summary
+summary(merged_data)
+```
+
+Below is an example of a boxplot comparing annual price distributions:
+
+```{r}
+ggplot(merged_data) +
+  geom_boxplot(aes(x = "Cottonseed", y = Cottonseed_Price, fill = "Cottonseed"), alpha = 0.6) +
+  geom_boxplot(aes(x = "Cotton Wholesale", y = Cotton_Wholesale_Price, fill = "Cotton Wholesale"), alpha = 0.6) +
+  scale_fill_manual(values = c("Cottonseed" = "blue", "Cotton Wholesale" = "red")) +
+  labs(title = "Side-by-Side Boxplots", x = "Type", y = "Price") +
+  theme_minimal()
+
+ggplot(cleaned_data) +
+  geom_boxplot(aes(x = "Cottonseed", y = Cottonseed_Price, fill = "Cottonseed"), alpha = 0.6) +
+  geom_boxplot(aes(x = "Cotton Wholesale", y = Cotton_Wholesale_Price, fill = "Cotton Wholesale"), alpha = 0.6) +
+  scale_fill_manual(values = c("Cottonseed" = "blue", "Cotton Wholesale" = "red")) +
+  labs(title = "Side-by-Side Boxplots", x = "Type", y = "Price") +
+  theme_minimal()
+```
+
+Summary Statistics A summary of cotton and cottonseed prices is presented below:
+
+```{r}
+summary_stats <- summary(merged_data)
+knitr::kable( summary_stats, caption = "Summary Statistics for Cotton and Cottonseed Prices (1910–1938)" ) 
+```
+
+## Results and Discussion
+
+-   **Observed Patterns Price Variability:** Cottonseed prices demonstrated greater variability compared to cotton prices, likely reflecting its emerging market status.
+
+-   **Trends Over Time:** Both commodities exhibited significant price fluctuations during the Great Depression, underscoring the economic impact of the era.
+
+-   **Correlation:** A positive correlation was observed between cotton and cottonseed prices, suggesting interdependence in their market dynamics.
+
+-   **Outliers:** Certain years, such as 1929 and 1933, showed extreme deviations in prices, possibly linked to economic policies or natural events affecting production.
+
+## Conclusion
+
+The analysis of cotton and cottonseed prices from 1910 to 1938 highlights their intertwined economic importance. Key findings include:
+
+The variability and trends in pricing reflect broader economic conditions of the era.
+
+The relationship between the two commodities indicates shared market drivers.
+
+Further analysis could explore regional differences or integrate external factors such as production volumes and policy changes.
+
+##References Source datasets: - Cotton_Wholesale_Prices_1910_1938.csv, - Cottonseed_Prices_1910_1938.csv. - Historical economic analyses on agricultural commodities. - Additional references to be determined.
