@@ -153,7 +153,7 @@ ggsave("Density_Plots.png", plot = DensityPlot, width = 8, height = 5)
 
 ### Scatter Plot ----
 # Scatter plot with a trend line to observe the relationship between cottonseed and wholesale prices
-ScatterPlot <- ggplot(cleaned_data, aes(x = Cottonseed_Price, y = Cotton_Wholesale_Price)) +
+ScatterPlot <- ggplot(data, aes(x = Cottonseed_Price, y = Cotton_Wholesale_Price)) +
   # Add points to the scatter plot
   geom_point(color = "blue", alpha = 0.6) +
   # Add a linear regression trend line
