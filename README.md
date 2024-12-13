@@ -28,11 +28,13 @@ Prerequisites
 - Install R and RStudio.
 Ensure the following R packages are installed:
 
-  ggplot2
-  
-  dplyr
-  
-  readr
+  - **dplyr**: For data manipulation
+  - **readr**: For reading and writing CSV files
+  - **kableExtra**: For stats and tables 
+  - **ggplot2** : For creating visualizations
+  - **forecast**: For time series analysis
+  - **tsoutliers**: For anomaly detection
+
 ## Steps
 1. Clone this repository using the following CMD prompt:
    
@@ -42,9 +44,17 @@ Ensure the following R packages are installed:
 3. Run the script to execute the analysis or generate the visualizations.
 
 ## Insights
-1. Pricing Trends: Line graphs indicate a general pricing trend during the analyzed period.
-2. Seasonality and Variability: Boxplots and histograms highlight seasonal price changes and variability.
-3. Relationships: Scatter plots explore correlations between cotton and cottonseed prices.
+-   **Observed Patterns Price Variability:** Cottonseed prices demonstrated greater variability compared to cotton prices, likely reflecting its emerging market status.
+
+-   **Trends Over Time:** Both commodities exhibited significant price fluctuations during the Great Depression, underscoring the economic impact of the era.
+
+-   **Correlation:** A positive correlation was observed between cotton and cottonseed prices, suggesting interdependence in their market dynamics.
+
+-   **Outliers/Anomalies**: Significant deviations were observed in specific years (e.g., 1929, 1933), corresponding to economic crises like the Great Depression.
+
+-   **Statistical Findings**: A strong positive correlation was confirmed between cotton and cottonseed prices. This suggests interdependence in their market dynamics. There were some years where cottonseed prices were huge compared to the cotton whole sale prices. This shows that there was a bad harvest/oversaturation of cotton etc.
+
+-   **Regression Insights**: The linear regression model highlights a significant positive relationship between cottonseed and wholesale prices, with cottonseed price explaining nearly 73% of the variance.
 
 ## Contact
 
