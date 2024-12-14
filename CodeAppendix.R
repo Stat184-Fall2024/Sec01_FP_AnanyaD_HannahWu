@@ -168,3 +168,83 @@ ScatterPlot <- ggplot(data, aes(x = Cottonseed_Price, y = Cotton_Wholesale_Price
 #### Optional ----
 # Save the plot as a PNG file with specified dimensions if needed
 ggsave("Scatter_Plot_Trend_Line.png", plot = ScatterPlot, width = 8, height = 5)
+
+
+### Histogram ----
+# Histogram to visualize the freq. dist. of prices for cotton and cottonseed
+Histogram <- ggplot(data) +
+  geom_histogram(aes(x = Cottonseed_Price, fill = "Cottonseed"), 
+                 bins = 20, alpha = 0.6, position = "identity") +
+  geom_histogram(aes(x = Cotton_Wholesale_Price, fill = "Cotton Wholesale"), 
+                 bins = 20, alpha = 0.6, position = "identity") +
+  # Customize the fill colors for the plot
+  scale_fill_manual(values = c("Cottonseed" = "blue", 
+                               "Cotton Wholesale" = "red")) +
+  # Add plot title and axis labels
+  labs(title = "Side-by-Side Histograms", x = "Price", y = "Frequency") +
+  # Apply a minimal theme for a clean and professional appearance
+  theme_minimal()
+
+#### Optional ----
+# Save the plot as a PNG file with specified dimensions if needed
+ggsave("Histogram.png", plot = Histogram, width = 8, height = 5)
+
+
+### Line Plot ----
+# Plotting price trends over time
+LinePlot <- ggplot(data, aes(x = Year)) +
+  geom_line(aes(y = Cotton_Wholesale_Price, color = "Cotton Price")) +
+  geom_line(aes(y = Cottonseed_Price, color = "Cottonseed Price")) +
+  # Customize the fill colors for the plot
+  scale_fill_manual(values =c("Cottonseed"=" blue","Cotton Wholesale"= "red")) +
+  # Add plot title and axis labels
+  labs(title = "Price Trends of Cotton and Cottonseed (1910-1938)--Line Plot",
+       x = "Year", y = "Price (in USD)") +
+  # Apply a minimal theme for a clean and professional appearance
+  theme_minimal()
+
+#### Optional ----
+# Save the plot as a PNG file with specified dimensions if needed
+ggsave("Line_Plot.png", plot = LinePlot, width = 8, height = 5)
+
+
+
+## Anomaly Detection ----
+### Identify Outliers Using Z-Scores ----
+anamoly_data <- data %>% 
+  mutate(Cottonseed_Z = (Cottonseed_Price - mean(Cottonseed_Price)) / 
+           sd(Cottonseed_Price),
+         Cotton_Z = (Cotton_Wholesale_Price - mean(Cotton_Wholesale_Price)) / 
+           sd(Cotton_Wholesale_Price))
+
+outliers <- anamoly_data %>% filter(abs(Cottonseed_Z) > 2 | abs(Cotton_Z) > 2)
+summary_outliers <- summary(outliers)
+knitr::kable( outliers, 
+              caption = "Outliers in Cotton and Cottonseed Prices (1910–1938)") 
+
+### Highlighting Outliers on the Line Plot ----
+ggplot(anamoly_data, aes(x = Year)) +
+  geom_line(aes(y = Cottonseed_Price, color = "Cottonseed Price")) +
+  geom_line(aes(y = Cotton_Wholesale_Price, color = "Cotton Price")) +
+  geom_point(data = outliers, aes(x = Year, y = Cottonseed_Price), 
+             color = "yellow", size = 3) +
+  labs(title = "Anomalies in Cotton and Cottonseed Prices", y = "Price (USD)") +
+  theme_minimal()
+
+
+
+## Statistical Analysis ----
+### Time Series Decomposition ----
+ts_data <- ts(data$Cottonseed_Price, start = c(1910, 1), frequency = 12)
+ts_decomp <- decompose(ts_data)
+plot(ts_decomp)
+
+### Hypothesis Testing: Correlation ----
+# Test for association between paired samples- CottonSeed & Cotton Price
+cor_test <- cor.test(data$Cottonseed_Price, data$Cotton_Wholesale_Price)
+cor_test
+
+### Predictive Modeling - Linear Regression ----
+# Uses Fitting Linear Model(lm) to calculate
+model <- lm(Cotton_Wholesale_Price ~ Cottonseed_Price, data = data) 
+summary(model)
